@@ -1,0 +1,11 @@
+pkgbase = sql-parser-git
+	pkgdesc = SQL parser library
+	pkgver = 1.5.r10.g31aaf8d
+	pkgrel = 1
+	url = https://github.com/klundeen/sql-parser
+	arch = any
+	license = MIT
+	source = sql-parser-git::git+https://github.com/klundeen/sql-parser.git
+	b2sums = SKIP
+
+pkgname = sql-parser-git
