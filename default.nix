@@ -7,14 +7,9 @@
 
 stdenv.mkDerivation rec {
   pname = "sql-parser";
-  version = "31aaf8d7a45e0ef76b5fafe090418a47a0f7f355";
+  version = "0.0.1";
 
-  src = fetchFromGitHub {
-    owner = "klundeen";
-    repo = "sql-parser";
-    rev = version;
-    sha256 = "sha256-+tlUGhG7+BojB1AICBnU6/zjSib2Lsy6BnWYTF8YkH0=";
-  };
+  src = ./.;
 
   buildInputs = [ bison flex ];
 
