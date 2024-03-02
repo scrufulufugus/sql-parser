@@ -1,4 +1,5 @@
 build/
+result/
 utils/
 bin/
 lib-test/
