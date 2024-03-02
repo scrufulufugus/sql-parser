@@ -1,6 +1,7 @@
 { lib,
   stdenv,
   fetchFromGitHub,
+  makeWrapper,
   bison,
   flex
 }:
@@ -12,25 +13,19 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   buildInputs = [ bison flex ];
+  nativeBuildInputs = [ makeWrapper ];
 
   enableParallelBuilding = true;
 
-  installPhase = ''
-    install -Dm644 src/*.h -t "$out/include/"
-    install -Dm644 src/sql/*.h -t "$out/include/sql/"
-    install -Dm755 libsqlparser.so -t "$out/lib/"
+  preInstall = ''
+    sed -i "s|^\(INSTALL\s*=\s*\).*|\1$out|g" Makefile;
+    mkdir -p $out/{lib,include};
   '';
 
-  doCheck = false;
-
-  checkPhase = ''
-    runHook preCheck
-    make test_install
-    runHook postCheck
-  '';
+  doCheck = true;
 
   meta = with lib; {
-    homepage = "https://github.com/klundeen/sql-parser";
+    homepage = "https://github.com/hyrise/sql-parser";
     description = "C++ SQL Parser";
     platforms = platforms.unix;
   };
